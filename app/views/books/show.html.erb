@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book title:</strong>
+  <%= @book.book_title %>
+</p>
+
+<p>Collbrate With</p>
+<%= hidden_field_tag :book_id, @book.id %>
+<% Author.all.each do |author| %>
+    <label class="checkbox-inline">
+        <%= check_box_tag 'book[author_ids][]', author.id, @book.author_ids.include?(author.id), class: 'book_author' %><%= author.first_name %>
+    </label>
+<% end %>
+
+<%= link_to 'Collbrate', 'javascript:void(0)', class: 'collbrateJs'  %>
+<br>
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>
